@@ -1,0 +1,36 @@
+{
+  "name": "generator-making-wordpress",
+  "version": "0.0.1",
+  "description": "A starting point for developing Wordpress in Making Waves",
+  "keywords": [
+    "yeoman-generator",
+    "Making Waves",
+    "Wordpress",
+    "Theme",
+    "Development",
+    "PHP",
+    "Sass",
+    "Grunt"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Piotr Szczygieł & Peder Nielsen",
+  "license": "MIT",
+  "dependencies": {
+    "yeoman-generator": "^0.17.3",
+    "chalk": "^0.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/makingwaves/making-wordpress/issues"
+  },
+  "homepage": "https://github.com/makingwaves/making-wordpress",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/makingwaves/making-wordpress"
+  },
+  "files": [
+    "app"
+  ]
+}
