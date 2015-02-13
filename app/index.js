@@ -3,6 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var themePath = 'wp-content/themes/';
 
 
 var StartWPSiteGenerator = yeoman.generators.Base.extend({
@@ -119,16 +120,16 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
 
     }
 
-    this.themePath = 'wp-content/themes/' + this.themeNameSpace;
+    themePath = 'wp-content/themes/' + this.themeNameSpace;
         
 
     //make site folder
-    //this.mkdir(this.themePath);
-    this.mkdir(this.themePath);
+    //this.mkdir(themePath);
+    this.mkdir(themePath);
 
 
     //Copy the base theme over
-    this.directory('blank-theme', this.themePath);
+    this.directory('blank-theme', themePath);
 
 
   
@@ -167,23 +168,23 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
     
 
    
-    this.template('_package.json', this.themePath+'/dev/tasks/package.json', context);
+    this.template('_package.json', themePath+'/dev/tasks/package.json', context);
 
     //bower setup
-    this.template('_.bowerrc', this.themePath+'/dev/tasks/.bowerrc', context);
-    this.template('_bower.json', this.themePath+'/dev/tasks/bower.json', context);
+    this.template('_.bowerrc', themePath+'/dev/tasks/.bowerrc', context);
+    this.template('_bower.json', themePath+'/dev/tasks/bower.json', context);
 
 
     //copy grunt setup
-    this.template("_Gruntfile.js", this.themePath+"/dev/tasks/Gruntfile.js", context);
+    this.template("_Gruntfile.js", themePath+"/dev/tasks/Gruntfile.js", context);
     
 
 
   },
 
   projectfiles: function () {
-    this.copy('editorconfig', this.themePath+'/.editorconfig');
-    this.copy('jshintrc', this.themePath+'/.jshintrc');
+    this.copy('editorconfig', themePath+'/.editorconfig');
+    this.copy('jshintrc', themePath+'/.jshintrc');
   }
 });
 
