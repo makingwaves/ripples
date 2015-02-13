@@ -124,18 +124,19 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
         
 
     //make site folder
+    this.mkdir(this.themeNameSpace);
     //this.mkdir(themePath);
-    this.mkdir(themePath);
 
 
     //Copy the base theme over
-    this.directory('blank-theme', themePath);
+    this.directory('blank-theme', this.themeNameSpace);
+    //this.directory('blank-theme', themePath);
 
 
   
     //make folders for the content
     //this.mkdir(this.themeNameSpace+'/dist'); //created at runtime
-    /*this.mkdir(this.themeNameSpace+'/dev');
+    this.mkdir(this.themeNameSpace+'/dev');
     this.mkdir(this.themeNameSpace+'/dev/src');
     this.mkdir(this.themeNameSpace+'/dev/src/fonts');
 
@@ -158,33 +159,39 @@ var StartWPSiteGenerator = yeoman.generators.Base.extend({
     this.directory('frameworks/scss/modules', this.themeNameSpace+'/dev/src/scss/modules');
     this.directory('frameworks/scss/core', this.themeNameSpace+'/dev/src/scss/core');
     this.directory('frameworks/scss/constructors', this.themeNameSpace+'/dev/src/scss/constructors');
-    
+
     this.template('frameworks/scss/_variables.scss', this.themeNameSpace+'/dev/src/scss/_variables.scss', context);
     this.template('frameworks/scss/style.scss', this.themeNameSpace+'/dev/src/scss/style.scss', context);
-    this.template('frameworks/scss/ie.scss', this.themeNameSpace+'/dev/src/scss/ie.scss', context);*/
+    this.template('frameworks/scss/ie.scss', this.themeNameSpace+'/dev/src/scss/ie.scss', context);
 
 
    
     
 
    
-    this.template('_package.json', themePath+'/dev/tasks/package.json', context);
+    this.template('_package.json', this.themeNameSpace+'/dev/tasks/package.json', context);
+    //this.template('_package.json', themePath+'/dev/tasks/package.json', context);
 
     //bower setup
-    this.template('_.bowerrc', themePath+'/dev/tasks/.bowerrc', context);
-    this.template('_bower.json', themePath+'/dev/tasks/bower.json', context);
+    this.template('_.bowerrc', this.themeNameSpace+'/dev/tasks/.bowerrc', context);
+    //this.template('_.bowerrc', themePath+'/dev/tasks/.bowerrc', context);
+    this.template('_bower.json', this.themeNameSpace+'/dev/tasks/bower.json', context);
+    //this.template('_bower.json', themePath+'/dev/tasks/bower.json', context);
 
 
     //copy grunt setup
-    this.template("_Gruntfile.js", themePath+"/dev/tasks/Gruntfile.js", context);
-    
+    this.template("_Gruntfile.js", this.themeNameSpace+"/dev/tasks/Gruntfile.js", context);
+    //this.template("_Gruntfile.js", themePath+"/dev/tasks/Gruntfile.js", context);
+
 
 
   },
 
   projectfiles: function () {
-    this.copy('editorconfig', themePath+'/.editorconfig');
-    this.copy('jshintrc', themePath+'/.jshintrc');
+    this.copy('editorconfig', this.themeNameSpace+'/.editorconfig');
+    //this.copy('editorconfig', themePath+'/.editorconfig');
+    this.copy('jshintrc', this.themeNameSpace+'/.jshintrc');
+    //this.copy('jshintrc', themePath+'/.jshintrc');
   }
 });
 
