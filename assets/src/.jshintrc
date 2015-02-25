@@ -9,8 +9,8 @@
   "latedef"  : true,
   "laxbreak" : true,
   "nonbsp"   : true,
-  "predef"   : ["console", "wp", "_theme_config"],
+  "predef"   : ["console", "define", "require", "alert"],
   "strict"   : true,
   "undef"    : true,
-  "unused"   : true
+  "unused"   : false
 }

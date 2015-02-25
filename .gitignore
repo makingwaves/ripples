@@ -49,3 +49,8 @@ temp/
 .Trashes
 
 .svn
+
+############
+## Files & Folders
+############
+assets/vendor/*

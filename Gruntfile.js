@@ -4,23 +4,23 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*!\n' +
-                ' * <%= pkg.themeName %> Version <%= pkg.version %> (<%= pkg.homepage %>)\n' +
-                ' * Copyright 2014-<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-                ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
-                ' */\n',
+        ' * <%= pkg.themeName %> Version <%= pkg.version %> (<%= pkg.homepage %>)\n' +
+        ' * Copyright 2014-<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+        ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+        ' */\n',
         themeheader:    '/*\n' +
-                        'Theme Name: <%= pkg.themeName %>\n' +
-                        'Theme URI: <%= pkg.homepage %>\n' +
-                        'Author: <%= pkg.author.name %>\n' +
-                        'Author URI: <%= pkg.author.url %>\n' +
-                        'Description: <%= pkg.description %>\n' +
-                        'Version: <%= pkg.version %>\n' +
-                        'License: <%= pkg.license.name %>\n' +
-                        'License URI: <%= pkg.license.url %>\n' +
-                        'Text Domain: <%= pkg.functionPrefix %>\n' +
-                        'Domain Path: /languages/\n' +
-                        'Tags:\n' +
-                        '*/',
+        'Theme Name: <%= pkg.themeName %>\n' +
+        'Theme URI: <%= pkg.homepage %>\n' +
+        'Author: <%= pkg.author.name %>\n' +
+        'Author URI: <%= pkg.author.url %>\n' +
+        'Description: <%= pkg.description %>\n' +
+        'Version: <%= pkg.version %>\n' +
+        'License: <%= pkg.license.name %>\n' +
+        'License URI: <%= pkg.license.url %>\n' +
+        'Text Domain: <%= pkg.functionPrefix %>\n' +
+        'Domain Path: /languages/\n' +
+        'Tags:\n' +
+        '*/',
         usebanner: {
             options: {
                 position: 'top',
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['assets/src/js/**/*.js'],
-                tasks: ['jshint'],
+                tasks: ['jshint', 'requirejs:production'],
                 options: {
                     livereload: true
                 }
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
 
         // JsHint your javascript
         jshint: {
-            all: ['assets/src/js/*.js', '!assets/dist/js/*.min.js', '!js/vendor/**/*.js'],
+            all: ['assets/src/js/*.js', '!assets/dist/js/*.min.js', '!assets/vendor/**/*.js'],
             options: {
                 jshintrc: 'assets/src/.jshintrc'
             }
@@ -98,15 +98,13 @@ module.exports = function (grunt) {
             production: {
                 files: {'assets/dist/css/style.css': 'assets/src/scss/style.scss'},
                 options: {
-                    style: 'compressed',
-                    strictMath: true
+                    style: 'compressed'
                 }
             },
             dev: {
                 files: {'assets/dist/css/style.css': 'assets/src/scss/style.scss'},
                 options: {
-                    style: 'expanded',
-                    strictMath: true
+                    style: 'expanded'
                 }
             }
         },
@@ -126,7 +124,10 @@ module.exports = function (grunt) {
                     name: 'main',
                     baseUrl: 'assets/src/js',
                     mainConfigFile: 'assets/src/js/main.js',
-                    out: 'assets/dist/js/main.min.js'
+                    paths: {requireLib : '../../vendor/requirejs/require'},
+                    include: ["requireLib"],
+                    out: 'assets/dist/js/main.min.js',
+                    preserveLicenseComments: false
                 }
             }
         },
@@ -157,7 +158,16 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+
+        remove: {
+            options: {
+                trace: true
+            },
+            fileList: ['delete-me', 'README.md'],
+            dirList: ['../twentytwelve']
         }
+
 
     });
 
@@ -190,6 +200,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-svgmin');
+    grunt.loadNpmTasks('grunt-remove');
 
     // Run bower install
     grunt.registerTask('bower-install', function () {

@@ -7,19 +7,10 @@
 
 function mywptheme_enqueue_scripts() {
 	$style_dependencies = apply_filters( 'mywptheme_style_dependencies', array() );
-	$script_dependencies = apply_filters( 'mywptheme_script_dependencies', array( 'jquery' ) );
+	$script_dependencies = apply_filters( 'mywptheme_script_dependencies', array() );
 
-	wp_enqueue_style( 'mywptheme', MYWPTHEME_THEME_URL . '/assets/dist/mywptheme.min.css', $style_dependencies, MYWPTHEME_THEME_VERSION );
-	wp_enqueue_script( 'mywptheme', MYWPTHEME_THEME_URL . '/assets/dist/mywptheme.min.js', $script_dependencies, MYWPTHEME_THEME_VERSION, true );
-
-	$script_vars = apply_filters( 'mywptheme_script_vars', array(
-		'load_fancybox'			=> false,
-		'load_tooltips'			=> false,
-		'load_popovers'			=> false,
-		'wrap_embeds'			=> true,
-	) );
-
-	wp_localize_script( 'mywptheme', '_theme_config', $script_vars );
+	wp_enqueue_style( 'mywptheme', MYWPTHEME_THEME_URL . '/assets/dist/css/style.css', $style_dependencies, MYWPTHEME_THEME_VERSION );
+	wp_enqueue_script( 'mywptheme', MYWPTHEME_THEME_URL . '/assets/dist/js/main.min.js', $script_dependencies, MYWPTHEME_THEME_VERSION, true );
 
 	if ( WP_DEBUG ) {
 		wp_enqueue_script( 'livereload', untrailingslashit( home_url() ) . ':35729/livereload.js?snipver=1', array(), false, true );
