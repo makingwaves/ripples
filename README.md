@@ -1,1 +1,0 @@
-# Making Waves WP generator
