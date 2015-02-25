@@ -124,7 +124,7 @@ module.exports = function (grunt) {
             production: {
                 options: {
                     name: 'main',
-                    baseUrl: 'js',
+                    baseUrl: 'assets/src/js',
                     mainConfigFile: 'assets/src/js/main.js',
                     out: 'assets/dist/js/main.min.js'
                 }
@@ -184,10 +184,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-bower-requirejs');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-text-replace');
