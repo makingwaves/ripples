@@ -2,7 +2,7 @@
   "name": "mywptheme",
   "version": "1.0.0",
   "dependencies": {
-    "requirejs": "~2.1.16",
-    "jquery": "latest"
+    "jquery": "~1.9.0",
+    "requirejs": "~2.1.5"
   }
 }
