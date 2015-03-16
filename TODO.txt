@@ -1,7 +1,0 @@
-
-* Add scss, js, php folder structure
-* Edit function.php
-* Compass and/or Susy as default? Breakpoint?
-* Remove all wp theme folders after install and activate mw theme
-* Add .gitignore to wp root (for wpengine)
-* Activate this theme on install
