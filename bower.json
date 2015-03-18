@@ -1,0 +1,15 @@
+{
+  "name": "ripples",
+  "homepage": "http://www.makingwaves.no/",
+  "authors": [
+    "Peder Nielsen <peder.nielsen@makingwaves.no>",
+    "Martin Dahl <martin.dahl@makingwaves.no>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.2",
+    "jquery": "~1.11.2",
+    "requirejs": "~2.1.5"
+  }
+}

@@ -1,0 +1,69 @@
+// Contain floats: nicolasgallagher.com/micro-clearfix-hack/
+%clearfix{
+  zoom: 1;
+  &:before, &:after { content: ""; display: table; }
+  &:after { clear: both; }
+}
+
+%clear-left {clear: left;}
+
+%show-horizontal-grid {
+  background: url('../images/_debug/gridinator-narrow.png') repeat-y 0 0;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  @media only screen and (min-width: 768px) {
+    background: url('../images/_debug/gridinator-wide.png') repeat-y 0 0;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+  }
+}
+
+%show-baseline-grid {background: url('../images/_debug/baseline-grid-6px.png') repeat 0 0;}
+
+%hyphenate {
+  //  text-align: justify;
+  -ms-word-break: break-all;
+  //  word-break: break-all; //da får man ikke -
+
+  /* Non standard for webkit */
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+%no-hyphination {
+  -ms-word-break: normal;
+  word-break: normal;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+//layout
+%g-xup {overflow: hidden;clear: both;//@extend %show-horizontal-grid;
+}
+%gi {
+  @include trailer(3);
+  margin-top: 0;
+  &:last-child {margin-bottom: 0;}
+}
+%component {padding: 0;}
+
+%link-arrow-before {
+  &:before {
+    content: '› ';
+  }
+}
+%default-ul {
+  list-style: disc;
+  margin: 0 0 rhythm(3) 1em;
+  padding-left: 2em;
+}

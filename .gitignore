@@ -52,4 +52,5 @@ temp/
 ############
 ## Files & Folders
 ############
-assets/vendor/*
+bower_components
+npm-debug.log

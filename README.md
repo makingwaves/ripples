@@ -1,9 +1,11 @@
-# Making Wordpress
+# Ripples - Wordpress theme
 
 Starter template for Wordpress projects in Making Waves
 
+In depth docs can be found [here](https://www.gitbook.com/content/book/pederan/makingpress/)
+
 ##Todo
-* Make a better theme name
+* index.php
 
 ## Requirements
 
@@ -33,7 +35,7 @@ Install the [Soil](https://github.com/roots/soil) plugin to enable additional fe
 
 ## Installation
 
-Clone the git repo - `git clone git@github.com:makingwaves/making-wordpress.git` and then rename the directory to the name of your theme or website.
+Clone the git repo - `git clone git@github.com:makingwaves/ripples.git` and then rename the directory to the name of your theme or website.
 
 
 ## Configuration

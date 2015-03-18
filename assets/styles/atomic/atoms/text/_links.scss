@@ -1,0 +1,9 @@
+a {
+  color: color(link);
+  text-decoration: underline;
+  &:hover, &:active {
+    text-decoration: none;
+    color: color(link-hover);
+  }
+  &:focus, &:active {}
+}

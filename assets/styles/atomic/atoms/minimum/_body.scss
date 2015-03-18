@@ -1,0 +1,9 @@
+body {
+  font-family: fontFamily(default);
+  font-size: $base-font-size;
+  line-height: 1.5;
+  font-weight: fontWeight(default);
+  font-style: fontStyle(default);
+  color: color(body);
+  background-color: color(body-bg);
+}

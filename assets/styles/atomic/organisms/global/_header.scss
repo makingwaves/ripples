@@ -1,0 +1,45 @@
+// ORGANISM: Global Header
+// ==========================================================================
+
+
+.header {
+  background-color: color(header-bg);
+  padding: rhythm(4) 0;
+
+  #search-btn {
+    border: none;
+    background-color: transparent;
+    font-size: em(32px);
+    padding: 0;
+    color: #fff;
+  }
+  #searchform {float: right;}
+
+  input[type="search"] {
+  }
+
+  @include breakpoint($breakpoint-desktop) {
+    .outer-container {
+      @include display-flex();
+    }
+    .logo {@include span(2 of 12);}
+    .main-navigation, #searchbox {@include align-self(flex-end);}
+    .main-navigation {
+      @include span(6.5 of 12);
+      padding-left: 2%;
+      ul {  }
+      li {float: left; margin-right: rhythm(3);
+        line-height: 0.875em;
+        &:last-child {margin-right: 0;}
+      }
+      a {
+        font-size: em(14px);
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #ffffff;
+        &:hover, &:active {text-decoration: underline;}
+      }
+    }
+    #searchbox {@include span(last 3.5 of 12);}
+  }
+}

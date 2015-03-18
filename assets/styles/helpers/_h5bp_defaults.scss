@@ -1,0 +1,46 @@
+// ==========================================================================
+// Base styles: opinionated defaults
+// ==========================================================================
+
+//
+// Remove text-shadow in selection highlight: h5bp.com/i
+// These selection rule sets have to be separate.
+// Customize the background color to match your design.
+//
+
+::-moz-selection {
+    background: #3969ca;
+    text-shadow: none;
+    color: white;
+}
+
+::selection {
+    background: #3969ca;
+    text-shadow: none;
+    color: white;
+}
+
+//
+// A better looking default horizontal rule
+//
+
+hr {
+    display: block;
+    margin: 0;
+    height: 0;
+    border: 0;
+    @include trailing-border;
+    @include leader(3);
+    @include trailer(4);
+    border-color: gray;
+}
+
+//
+// Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+//
+
+img {
+    vertical-align: middle;
+    max-width: 100%;
+  height: auto;
+}
