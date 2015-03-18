@@ -44,11 +44,9 @@ $lt-xlarge: max-width 1439px;
 
 $xlarge: min-width 1440px;
 
-
 // ==========================================================================
 // Variables
 // ==========================================================================
-
 
 //COLORS
 //ALL SITE COLORS EXCEPT BLACK AND WHITE
@@ -62,7 +60,9 @@ $colors: (
   body: $epsilonColor,
   body-bg: #fff,
   link: $epsilonColor,
-  link-hover: $epsilonColor
+  link-hover: $epsilonColor,
+  icon: #000,
+  icon-hover: lighten(#000, 20%)
 ) !global;
 
 

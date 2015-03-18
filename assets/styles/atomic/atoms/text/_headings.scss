@@ -10,7 +10,7 @@
     @include trailer(3, $size);
   }
 
-  @include breakpoint($breakpoint-desktop) {
+  @include breakpoint($large) {
 
     $size: fontSize(h#{$i}, desktop);
     h#{$i}, .#{nth($greek-alphabet, $i)} {
