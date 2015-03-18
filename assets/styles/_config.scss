@@ -26,12 +26,23 @@ $susy: (
 
 //breakpoints (http://css-tricks.com/snippets/css/media-queries-for-standard-devices/)
 $breakpoint-to-ems: true;
-$breakpoint-lt-tablet: max-width 480px;
-$breakpoint-tablet: min-width 481px;
-$breakpoint-lt-desktop: max-width 767px;
-$breakpoint-desktop: min-width 768px;
-$breakpoint-lt-wide: max-width 959px;
-$breakpoint-wide: min-width 960px;
+
+//mobile
+$lt-small: max-width 667px;
+
+//tablet
+$small: min-width 668px;
+$lt-medium: max-width 991px;
+
+//desktop
+$medium: min-width 992px;
+$lt-large: max-width 1279px;
+
+//high res
+$large: min-width 1280px;
+$lt-xlarge: max-width 1439px;
+
+$xlarge: min-width 1440px;
 
 
 // ==========================================================================

@@ -11,5 +11,9 @@
     "modernizr": "~2.8.2",
     "jquery": "~1.11.2",
     "requirejs": "~2.1.5"
+  },
+  "devDependencies": {
+    "susy": "~2.2.2",
+    "breakpoint-sass": "~2.5.0"
   }
 }

@@ -1,1 +1,13 @@
 /*Import atom files*/
+@import "global/html";
+@import "global/body";
+@import "global/main";
+
+@import "text/tags";
+@import "text/headings";
+@import "text/links";
+@import "text/paragraph";
+@import "text/fonts";
+
+@import "images/icons";
+@import "images/img-flow";
