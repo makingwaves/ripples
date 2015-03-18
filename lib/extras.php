@@ -31,3 +31,8 @@ function excerpt_more() {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'ripples') . '</a>';
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
+
+function my_rewrite_flush() {
+	flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', __NAMESPACE__ . '\\my_rewrite_flush' );

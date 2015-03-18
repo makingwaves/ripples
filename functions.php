@@ -8,7 +8,6 @@
  * Please note that missing files will produce a fatal error.
  */
 $ripples_includes = [
-	'lib/cleanup.php',               // wp cleanup
 	'lib/utils.php',                 // Utility functions
 	'lib/init.php',                  // Initial theme setup and constants
 	'lib/wrapper.php',               // Theme wrapper class

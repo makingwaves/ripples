@@ -1,4 +1,3 @@
-index.php
 <?php inc( 'atom', 'main-start' ); ?>
 <?php inc('molecule', 'page-header'); ?>
 

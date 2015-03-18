@@ -8,60 +8,70 @@ use MW\Ripples\Assets;
  * Theme setup
  */
 function setup() {
-  // Make theme available for translation
-  // Community translations can be found at https://github.com/roots/sage-translations
-  load_theme_textdomain('ripples', get_template_directory() . '/lang');
+	// Make theme available for translation
+	// Community translations can be found at https://github.com/roots/sage-translations
+	load_theme_textdomain( 'ripples', get_template_directory() . '/lang' );
 
-  // Enable plugins to manage the document title
-  // http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
-  add_theme_support('title-tag');
+	// launching operation cleanup
+	require_once 'cleanup.php';
 
-  // Register wp_nav_menu() menus
-  // http://codex.wordpress.org/Function_Reference/register_nav_menus
-  register_nav_menus([
-    'primary_navigation' => __('Primary Navigation', 'ripples'),
-    'footer_menu' => __('Footer Menu', 'ripples'),
-  ]);
+	// Enable plugins to manage the document title
+	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
+	add_theme_support( 'title-tag' );
 
-  // Add post thumbnails
-  // http://codex.wordpress.org/Post_Thumbnails
-  // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
-  // http://codex.wordpress.org/Function_Reference/add_image_size
-  add_theme_support('post-thumbnails');
+	// Register wp_nav_menu() menus
+	// http://codex.wordpress.org/Function_Reference/register_nav_menus
+	register_nav_menus( [
+		'primary_navigation' => __( 'Primary Navigation', 'ripples' ),
+		'footer_menu'        => __( 'Footer Menu', 'ripples' ),
+	] );
 
-  // Add post formats
-  // http://codex.wordpress.org/Post_Formats
-  add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
+	// Add post thumbnails
+	// http://codex.wordpress.org/Post_Thumbnails
+	// http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
+	// http://codex.wordpress.org/Function_Reference/add_image_size
+	add_theme_support( 'post-thumbnails' );
 
-  // Add HTML5 markup for captions
-  // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
-  add_theme_support('html5', ['caption', 'comment-form', 'comment-list']);
+	// Add post formats
+	// http://codex.wordpress.org/Post_Formats
+	add_theme_support( 'post-formats', [ 'aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio' ] );
 
-  // Tell the TinyMCE editor to use a custom stylesheet
-  add_editor_style(Assets\asset_path('styles/editor-style.css'));
+	// Add HTML5 markup for captions
+	// http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
+	add_theme_support( 'html5', [ 'caption', 'comment-form', 'comment-list' ] );
+
+	// Tell the TinyMCE editor to use a custom stylesheet
+	add_editor_style( Assets\asset_path( 'styles/editor-style.css' ) );
 }
-add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
+add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
+
+function init() {
+	require_once dirname(__FILE__).'/../includes/cpt/custom-post-types.php';
+}
+
+add_action('init', __NAMESPACE__ . '\\init');
 /**
  * Register sidebars
  */
 function widgets_init() {
-  register_sidebar([
-    'name'          => __('Primary', 'ripples'),
-    'id'            => 'sidebar-primary',
-    'before_widget' => '<section class="widget %1$s %2$s">',
-    'after_widget'  => '</section>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
-  ]);
+	register_sidebar( [
+		'name'          => __( 'Primary', 'ripples' ),
+		'id'            => 'sidebar-primary',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	] );
 
-  register_sidebar([
-    'name'          => __('Footer', 'ripples'),
-    'id'            => 'sidebar-footer',
-    'before_widget' => '<section class="widget %1$s %2$s">',
-    'after_widget'  => '</section>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>'
-  ]);
+	register_sidebar( [
+		'name'          => __( 'Footer', 'ripples' ),
+		'id'            => 'sidebar-footer',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>'
+	] );
 }
-add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
+
+add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
