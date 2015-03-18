@@ -42,7 +42,8 @@ function display_sidebar() {
   if (!isset($display)) {
     $conditionalCheck = new Ripples\ConditionalTagCheck(
       /**
-       * Any of these conditional tags that return true won't show the sidebar.
+       * Note: Oppsite of Sage
+       * Any of these conditional tags that return true show the sidebar.
        * You can also specify your own custom function as long as it returns a boolean.
        *
        * To use a function that accepts arguments, use an array instead of just the function name as a string.
@@ -58,13 +59,14 @@ function display_sidebar() {
        *
        */
       [
-        'is_404',
-        'is_front_page',
-        ['is_page_template', 'template-custom.php']
+//        'is_404',
+//        'is_front_page',
+//	    ['is_page', 'testside'],
+//        ['is_page_template', 'templates/template-frontpage.php']
       ]
     );
 
-    $display = apply_filters('ripples/display_sidebar', $conditionalCheck->result);
+    $display = apply_filters('ripples/display_sidebar', !$conditionalCheck->result);
   }
 
   return $display;

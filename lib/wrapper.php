@@ -14,7 +14,7 @@ function template_path() {
 }
 
 function sidebar_path() {
-  return new SageWrapping('templates/sidebar.php');
+  return new SageWrapping('components/template_part/sidebar.php');
 }
 
 class SageWrapping {

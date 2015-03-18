@@ -1,6 +1,6 @@
 index.php
 <?php inc( 'atom', 'main-start' ); ?>
-<?php get_template_part('components/template_part/page', 'header'); ?>
+<?php inc('molecule', 'page-header'); ?>
 
 <?php if (!have_posts()) : ?>
   <div class="alert alert-warning">

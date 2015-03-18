@@ -18,7 +18,7 @@ use MW\Ripples\Wrapper;
 
 	    <?php if (Config\display_sidebar()) : ?>
 		<aside class="sidebar" role="complementary">
-			<?php //include Wrapper\sidebar_path(); ?>
+			<?php include Wrapper\sidebar_path(); ?>
 		</aside>
 		<?php endif; ?>
     </div>

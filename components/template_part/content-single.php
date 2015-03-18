@@ -2,7 +2,7 @@
   <article <?php post_class(); ?>>
     <header>
       <h1 class="entry-title"><?php the_title(); ?></h1>
-      <?php get_template_part('components/template_part/entry-meta'); ?>
+	    <?php inc('molecule', 'entry-meta'); ?>
     </header>
     <div class="entry-content">
       <?php the_content(); ?>
@@ -10,5 +10,6 @@
     <footer>
       <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'ripples'), 'after' => '</p></nav>']); ?>
     </footer>
+	<?php inc('organism', 'comments'); ?>
   </article>
 <?php endwhile; ?>

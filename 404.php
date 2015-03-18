@@ -1,4 +1,4 @@
-<?php get_template_part('components/template_part/page', 'header'); ?>
+<?php inc('molecule', 'page-header'); ?>
 
 <div class="alert alert-warning">
   <?php _e('Sorry, but the page you were trying to view does not exist.', 'ripples'); ?>
