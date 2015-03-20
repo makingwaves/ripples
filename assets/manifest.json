@@ -23,10 +23,14 @@
     "modernizr.js": {
       "bower": ["modernizr"]
     },
-    "paths": {
-      "source": "assets/",
-      "dist": "dist/"
+    "images": {
+      "files": ["assets/images/**/*", "!assets/images/_debug/", "!assets/images/_debug/**"],
+      "external": false
     }
+  },
+  "paths": {
+    "source": "assets/",
+    "dist": "dist/"
   },
   "config": {
     "devUrl": "http://makingpress.mw"

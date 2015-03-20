@@ -6,6 +6,6 @@
  * Time: 09:34
  */
 ?>
-<?php if(isset($value->img) && !empty($value->img)) : ?>
-	<div class="img-flow ratio-<?php echo $value->ratio; ?>"><?php echo $value->img; ?></div>
+<?php if(!empty($value->img)) : ?>
+	<div class="img-flow ratio-<?php echo $value->ratio; ?>"><img src="<?php echo $value->img->src; ?>" alt="<?php echo $value->img->alt; ?>"></div>
 <?php endif; ?>

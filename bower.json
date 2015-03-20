@@ -12,6 +12,11 @@
     "jquery": "~1.11.2",
     "requirejs": "~2.1.5"
   },
+  "overrides": {
+    "modernizr": {
+      "main": "./modernizr.js"
+    }
+  },
   "devDependencies": {
     "susy": "~2.2.2",
     "breakpoint-sass": "~2.5.0"

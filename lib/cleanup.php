@@ -167,3 +167,34 @@ function remove_default_description($bloginfo) {
   return ($bloginfo === $default_tagline) ? '' : $bloginfo;
 }
 add_filter('get_bloginfo_rss', __NAMESPACE__ . '\\remove_default_description');
+
+
+/************* THUMBNAIL SIZE OPTIONS *************/
+
+// Thumbnail sizes
+//add_image_size( 'ripples-thumb-600', 552, 552, true );
+
+/*
+to add more sizes, simply copy a line from above
+and change the dimensions & name. As long as you
+upload a "featured image" as large as the biggest
+set width or height, all the other sizes will be
+auto-cropped.
+
+To call a different size, simply change the text
+inside the thumbnail function.
+
+For example, to call the 552 x 552 sized image,
+we would use the function:
+<?php the_post_thumbnail( 'ripples-thumb-552' ); ?>
+
+*/
+
+//add_filter( 'image_size_names_choose', __NAMESPACE__ . '\\ripples_custom_image_sizes' );
+
+function ripples_custom_image_sizes( $sizes ) {
+	return array_merge( $sizes, array(
+		'ripples-thumb-552' => '552px ' . __('by', 'ripples') . ' 552px'
+	) );
+}
+

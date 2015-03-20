@@ -78,6 +78,7 @@ var cssTasks = function(filename) {
         })
         /*.pipe(function() {
             return $.if('*.scss', $.sass({
+                //compass: true,
                 outputStyle: 'nested', // libsass doesn't support expanded yet
                 precision: 10,
                 includePaths: ['.'],
@@ -270,5 +271,8 @@ gulp.task('bower-install', function () {
 });
 
 // ### Setup
+//fixme: Not working
 // `gulp setup` - Set up the project
-gulp.task('setup', ['bower-install']);
+gulp.task('setup', ['clean', 'bower-install'], function() {
+    gulp.start('build');
+});

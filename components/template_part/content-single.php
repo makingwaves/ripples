@@ -1,3 +1,4 @@
+<?php inc( 'atom', 'main-start' ); ?>
 <?php while (have_posts()) : the_post(); ?>
   <article <?php post_class(); ?>>
     <header>
@@ -13,3 +14,4 @@
 	<?php inc('organism', 'comments'); ?>
   </article>
 <?php endwhile; ?>
+<?php inc( 'atom', 'main-end' ); ?>
