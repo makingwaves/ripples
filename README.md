@@ -4,18 +4,15 @@ Starter template for Wordpress projects in Making Waves
 
 In depth docs can be found [here](https://www.gitbook.com/content/book/pederan/makingpress/)
 
-##Todo
-* index.php
-
 ## Requirements
 
-| Prerequisite    | How to check | How to install
-| --------------- | ------------ | ------------- |
-| PHP >= 5.4.x    | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
-| Node.js 0.12.x  | `node -v`    | [nodejs.org](http://nodejs.org/) |
-| gulp >= 3.8.10  | `gulp -v`    | `npm install -g gulp` |
-| Bower >= 1.3.12 | `bower -v`   | `npm install -g bower` |
-
+| Prerequisite     | How to check | How to install
+| --------------- -| ------------ | ------------- |
+| PHP >= 5.4.x     | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
+| Node.js 0.12.x   | `node -v`    | [nodejs.org](http://nodejs.org/) |
+| gulp >= 3.8.10   | `gulp -v`    | `npm install -g gulp` |
+| Bower >= 1.3.12  | `bower -v`   | `npm install -g bower` |
+| Compass >= 1.0.1 | `compass -v` | `gem install compass` |
 For more installation notes, refer to the [Install gulp and Bower](#install-gulp-and-bower) section in this document.
 
 ## Features
@@ -24,14 +21,7 @@ For more installation notes, refer to the [Install gulp and Bower](#install-gulp
 * [BrowserSync](http://www.browsersync.io/) for keeping multiple browsers and devices synchronized while testing, along with injecting updated CSS and JS into your browser while you're developing
 * [Bower](http://bower.io/) for front-end package management
 * [Theme wrapper](https://roots.io/sage/docs/theme-wrapper/)
-* ARIA roles and microformats
-* Cleaner HTML output of navigation menus
-
-Install the [Soil](https://github.com/roots/soil) plugin to enable additional features:
-
-* Cleaner output of `wp_head` and enqueued assets
-* Root relative URLs
-* Nice search (`/search/query/`)
+* [Atomic design](http://bradfrost.com/blog/post/atomic-web-design/) folder structure 
 
 ## Installation
 
@@ -46,7 +36,7 @@ Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post format
 
 ## Theme development
 
-[] uses [gulp](http://gulpjs.com/) as its build system and [Bower](http://bower.io/) to manage front-end packages.
+Ripples uses [gulp](http://gulpjs.com/) as its build system and [Bower](http://bower.io/) to manage front-end packages.
 
 ### Install gulp and Bower
 
