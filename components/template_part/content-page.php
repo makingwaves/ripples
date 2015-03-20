@@ -1,7 +1,6 @@
 <?php
 
 $post_id = isset( $post_id ) ? $post_id : get_the_ID();
-$value = !empty( $value ) ? $value : 'content';
 
 if ( !empty( $value ) && function_exists( 'get_field' ) && $post_id ) {
 	// check if the flexible content field has rows of data
