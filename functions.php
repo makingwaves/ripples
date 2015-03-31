@@ -20,14 +20,14 @@ $ripples_includes = [
 	'lib/acf.php',                      // Advanced custom fields settings
 ];
 
-foreach ($ripples_includes as $file) {
-  if (!$filepath = locate_template($file)) {
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'ripples'), $file), E_USER_ERROR);
-  }
+foreach ( $ripples_includes as $file ) {
+	if ( ! $filepath = locate_template( $file ) ) {
+		trigger_error( sprintf( __( 'Error locating %s for inclusion', 'ripples' ), $file ), E_USER_ERROR );
+	}
 
-  require_once $filepath;
+	require_once $filepath;
 }
-unset($file, $filepath);
+unset( $file, $filepath );
 
 /**
  * Load atomic components from the components folder
@@ -40,20 +40,21 @@ unset($file, $filepath);
  *
  */
 
-function inc($type, $component, $value = null, $componentType = '', $path = 'components') {
-	$component = $path.'/'.$type.'/'.$component;
+function inc( $type, $component, $value = null, $componentType = '', $path = 'components' ) {
+	$component = $path . '/' . $type . '/' . $component;
 	$templates = array();
-	if ( '' !== $componentType )
-		$templates[] = $component."-".$componentType.".php";
+	if ( '' !== $componentType ) {
+		$templates[] = $component . "-" . $componentType . ".php";
+	}
 
-	$templates[] = $component.".php";
+	$templates[] = $component . ".php";
 
-	$template = locate_template($templates);
+	$template = locate_template( $templates );
 
-	if('' !== $template) {
+	if ( '' !== $template ) {
 		include $template;
-	}  else if ( WP_DEBUG ) {
-		echo 'CANNOT FIND COMPONENT(S): "' . implode("\" or \"", $templates).'"';
+	} else if ( WP_DEBUG ) {
+		echo 'CANNOT FIND COMPONENT(S): "' . implode( "\" or \"", $templates ) . '"';
 	}
 }
 

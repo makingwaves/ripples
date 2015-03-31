@@ -47,10 +47,10 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
 function init() {
-	require_once dirname(__FILE__).'/../includes/cpt/custom-post-types.php';
+	require_once dirname( __FILE__ ) . '/../includes/cpt/custom-post-types.php';
 }
 
-add_action('init', __NAMESPACE__ . '\\init');
+add_action( 'init', __NAMESPACE__ . '\\init' );
 /**
  * Register sidebars
  */
