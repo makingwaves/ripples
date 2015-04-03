@@ -33,3 +33,7 @@
 @import "atomic/pages/pages";
 
 @media print {@import "print";}
+
+body {
+  background-color: blue;
+}
