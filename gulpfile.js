@@ -15,8 +15,8 @@ var path = {
 
 // CLI options
 var enabled = {
-    // Enable static asset revisioning when `--production`
-    rev: argv.production,
+    // Optimize and combine related scripts together into build layers and minify them via UglifyJS when `--production`
+    rjs: argv.production,
     // Disable source maps when `--production`
     maps: !argv.production,
     // Fail styles task on error when `--production`
@@ -71,16 +71,17 @@ var jsTasks = function (filename) {
         })();
 };
 
-gulp.task('scripts', function () {
+// ### Scripts
+// `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+// and project JS.
+gulp.task('scripts', ['jshint'], function () {
     return gulp.src(path.source + 'scripts/main.js')
-        .pipe(jsTasks('main.js'))
-        .pipe(gulp.dest(path.dist + 'scripts'))
+        //.pipe(jsTasks('main.js'))
+        //.pipe(gulp.dest(path.dist + 'scripts'))
         .pipe(reload({stream: true}));
 });
 
-gulp.task('rjs-shell', shell.task([
-    'r.js -o build/rjs-build.js'
-]));
+gulp.task('scripts-build', ['jshint'], shell.task(['r.js -o build/rjs-build.js']));
 
 // ### JSHint
 // `gulp jshint` - Lints configuration JSON and project JS.
@@ -151,7 +152,7 @@ gulp.task('watch', function () {
 // ### Build
 // `gulp build` - Run all the build tasks but don't clean up beforehand.
 // Generally you should be running `gulp` instead of `gulp build`.
-gulp.task('build', ['styles', 'scripts', 'fonts', 'images']);
+gulp.task('build', ['styles', 'scripts-build', 'fonts', 'images']); //todo: Run task that copy modernizr, requirejs (alt other vendor files to dist)
 
 // ### Clean
 // `gulp clean` - Deletes the build folder entirely.

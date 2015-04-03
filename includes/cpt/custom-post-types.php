@@ -1,6 +1,5 @@
 <?php
 //http://codex.wordpress.org/Function_Reference/register_post_type
-
 //add cpts
 //$customPostTypes = array('template-cpt-book');
 $customPostTypes = array();

@@ -2,76 +2,14 @@
 
 namespace MW\Ripples\Assets;
 
-/**
- * Scripts and stylesheets
- *
- * Enqueue stylesheets in the following order:
- * 1. /theme/dist/styles/main.css
- *
- * Enqueue scripts in the following order:
- * 1. /theme/dist/scripts/modernizr.js
- * 2. /theme/dist/scripts/main.js
- */
-
-class JsonManifest {
-	private $manifest;
-
-	public function __construct( $manifest_path ) {
-		if ( file_exists( $manifest_path ) ) {
-			$this->manifest = json_decode( file_get_contents( $manifest_path ), true );
-		} else {
-			$this->manifest = [ ];
-		}
-	}
-
-	public function get() {
-		return $this->manifest;
-	}
-
-	public function getPath( $key = '', $default = null ) {
-		$collection = $this->manifest;
-		if ( is_null( $key ) ) {
-			return $collection;
-		}
-		if ( isset( $collection[ $key ] ) ) {
-			return $collection[ $key ];
-		}
-		foreach ( explode( '.', $key ) as $segment ) {
-			if ( ! isset( $collection[ $segment ] ) ) {
-				return $default;
-			} else {
-				$collection = $collection[ $segment ];
-			}
-		}
-
-		return $collection;
-	}
-}
-
-function asset_path( $filename ) {
-	$dist_path = get_template_directory_uri() . DIST_DIR;
-	$directory = dirname( $filename ) . '/';
-	$file      = basename( $filename );
-	static $manifest;
-
-	if ( empty( $manifest ) ) {
-		$manifest_path = get_template_directory() . DIST_DIR . 'assets.json';
-		$manifest      = new JsonManifest( $manifest_path );
-	}
-
-	if ( WP_ENV !== 'development' && array_key_exists( $file, $manifest->get() ) ) {
-		return $dist_path . $directory . $manifest->get()[ $file ];
-	} else {
-		return $dist_path . $directory . $file;
-	}
-}
-
 function assets() {
 	$vendorFolder = get_template_directory_uri() . '/bower_components/';
+	$assetFolder = get_template_directory_uri() . '/assets/';
+	$distFolder = get_template_directory_uri() . DIST_DIR;
 
-	wp_enqueue_style( 'ripples_css', asset_path( 'styles/main.css' ), false, null );
+	wp_enqueue_style( 'ripples_css', $distFolder. 'styles/main.css' , false, null );
 
-	if ( ! is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
+	if ( ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
 	}
 
@@ -79,13 +17,13 @@ function assets() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_script( 'modernizr', $vendorFolder . 'modernizr/modernizr.js', [ ], null, false );
+	wp_enqueue_script( 'modernizr', $distFolder . 'modernizr.js', [ ], null, false );
 
 	if ( WP_ENV === 'development' ) {
-		wp_enqueue_script( 'ripples_rjs', $vendorFolder . 'requirejs/require.js', [ ], null, true );
-		wp_enqueue_script( 'ripples_js', asset_path( 'scripts/main.js' ), [ ], null, true );
+		wp_enqueue_script( 'ripples_rjs', $distFolder . 'requirejs/require.js', [ ], null, true );
+		wp_enqueue_script( 'ripples_js', $assetFolder . 'scripts/main.js' , [ ], null, true );
 	} else {
-		wp_enqueue_script( 'ripples_js_min', asset_path( 'scripts/main.min.js' ), [ ], null, true );
+		wp_enqueue_script( 'ripples_js_min', $distFolder .  'scripts/main.min.js' , [ ], null, true );
 	}
 
 }
