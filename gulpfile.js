@@ -72,16 +72,20 @@ var jsTasks = function (filename) {
 };
 
 // ### Scripts
-// `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
+// `gulp scripts`
 // and project JS.
 gulp.task('scripts', ['jshint'], function () {
-    return gulp.src(path.source + 'scripts/main.js')
-        //.pipe(jsTasks('main.js'))
-        //.pipe(gulp.dest(path.dist + 'scripts'))
-        .pipe(reload({stream: true}));
+    if(enabled.rjs) {
+        //console.log('prod');
+        gulp.start(shell.task(['r.js -o build/rjs-build.js']));
+    } else {
+        //console.log('dev');
+        return gulp.src(path.source + 'scripts/main.js')
+            //.pipe(jsTasks('main.js'))
+            //.pipe(gulp.dest(path.dist + 'scripts'))
+            .pipe(reload({stream: true}));
+    }
 });
-
-gulp.task('scripts-build', ['jshint'], shell.task(['r.js -o build/rjs-build.js']));
 
 // ### JSHint
 // `gulp jshint` - Lints configuration JSON and project JS.
@@ -149,11 +153,6 @@ gulp.task('watch', function () {
     });
 });
 
-// ### Build
-// `gulp build` - Run all the build tasks but don't clean up beforehand.
-// Generally you should be running `gulp` instead of `gulp build`.
-gulp.task('build', ['styles', 'scripts-build', 'fonts', 'images']); //todo: Run task that copy modernizr, requirejs (alt other vendor files to dist)
-
 // ### Clean
 // `gulp clean` - Deletes the build folder entirely.
 gulp.task('clean', require('del').bind(null, [path.dist]));
@@ -164,6 +163,18 @@ gulp.task('bower-install', function () {
     });
 });
 
+// ### Copy
+// `gulp copy` - Copy modernizr to dist folder for production
+gulp.task('copy', function() {
+    return gulp.src('bower_components/modernizr/modernizr.js')
+        .pipe(gulp.dest(path.dist + 'scripts'));
+});
+
+// ### Build
+// `gulp build` - Run all the build tasks but don't clean up beforehand.
+// Generally you should be running `gulp` instead of `gulp build`.
+gulp.task('build', ['styles', 'scripts', 'fonts', 'images']);
+
 // ### Gulp
 // `gulp` - Run a complete build. To compile for production run `gulp --production`.
 gulp.task('default', ['clean'], function () {
@@ -173,5 +184,6 @@ gulp.task('default', ['clean'], function () {
 // ### Setup
 // `gulp setup` - Set up the project
 gulp.task('setup', ['clean', 'bower-install'], function () {
+    gulp.start('copy');
     gulp.start('build');
 });
