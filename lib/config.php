@@ -4,10 +4,20 @@ namespace MW\Ripples\Config;
 
 use MW\Ripples;
 
+function is_localhost() {
+	$whiteList = array( '127.0.0.1', '::1' );
+	if( in_array( $_SERVER['REMOTE_ADDR'], $whiteList) )
+		return true;
+}
+
+// Fallback if WP_ENV isn't defined in your WordPress config
+// Used in lib/assets.php to check for 'development' or 'production'
 if ( ! defined( 'WP_ENV' ) ) {
-	// Fallback if WP_ENV isn't defined in your WordPress config
-	// Used in lib/assets.php to check for 'development' or 'production'
-	define( 'WP_ENV', 'production' );
+	if(is_localhost()) {
+		define( 'WP_ENV', 'development' );
+	} else {
+		define( 'WP_ENV', 'production' );
+	}
 }
 
 /**
