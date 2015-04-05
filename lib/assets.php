@@ -5,7 +5,7 @@ namespace MW\Ripples\Assets;
 function assets() {
 	$vendorFolder = get_template_directory_uri() . '/bower_components/';
 	$assetFolder = get_template_directory_uri() . '/assets/';
-	$distFolder = get_template_directory_uri() . DIST_DIR;
+	$distFolder = get_template_directory_uri() . '/dist/';
 
 	wp_enqueue_style( 'ripples_css', $distFolder. 'styles/main.css' , false, null );
 

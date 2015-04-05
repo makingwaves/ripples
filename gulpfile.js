@@ -1,27 +1,25 @@
 // ## Globals
 /*global $:true*/
-var $ = require('gulp-load-plugins')();
-var argv = require('yargs').argv;
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var gulp = require('gulp');
-var lazypipe = require('lazypipe');
-var shell = require('gulp-shell');
+var $ = require('gulp-load-plugins')(),
+    argv = require('yargs').argv,
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload,
+    gulp = require('gulp'),
+    lazypipe = require('lazypipe'),
+    shell = require('gulp-shell');
 
 var path = {
-    source: 'assets/',
-    dist: 'dist/'
-};
-
-// CLI options
-var enabled = {
-    // Optimize and combine related scripts together into build layers and minify them via UglifyJS when `--production`
-    rjs: argv.production,
-    // Disable source maps when `--production`
-    maps: !argv.production,
-    // Fail styles task on error when `--production`
-    failStyleTask: argv.production
-};
+        source: 'assets/',
+        dist: 'dist/'
+    },
+    enabled = { // CLI options
+        // Optimize and combine related scripts together into build layers and minify them via UglifyJS when `--production`
+        rjs: argv.production,
+        // Disable source maps when `--production`
+        maps: !argv.production,
+        // Fail styles task on error when `--production`
+        failStyleTask: argv.production
+    };
 
 var cssTasks = function () {
     return lazypipe()
@@ -34,11 +32,10 @@ var cssTasks = function () {
         .pipe(function () {
             return $.compass({
                 config_file: './config.rb',
-                css: 'dist/css',
+                css: 'dist/styles',
                 sass: 'assets/styles'
             });
         })
-        //.pipe($.concat)
         .pipe($.pleeease, {
             autoprefixer: {
                 browsers: [
@@ -52,37 +49,16 @@ var cssTasks = function () {
         })();
 };
 
-// ### JS processing pipeline
-// Example
-// ```
-// gulp.src(jsFiles)
-//   .pipe(jsTasks('main.js')
-//   .pipe(gulp.dest(path.dist + 'scripts'))
-// ```
-var jsTasks = function (filename) {
-    return lazypipe()
-        .pipe(function () {
-            return $.if(enabled.maps, $.sourcemaps.init());
-        })
-        .pipe($.concat, filename)
-        .pipe($.uglify)
-        .pipe(function () {
-            return $.if(enabled.maps, $.sourcemaps.write('.'));
-        })();
-};
-
 // ### Scripts
 // `gulp scripts`
 // and project JS.
 gulp.task('scripts', ['jshint'], function () {
-    if(enabled.rjs) {
-        //console.log('prod');
+    if (enabled.rjs) {
+        //prod
         gulp.start(shell.task(['r.js -o build/rjs-build.js']));
     } else {
-        //console.log('dev');
+        //dev
         return gulp.src(path.source + 'scripts/main.js')
-            //.pipe(jsTasks('main.js'))
-            //.pipe(gulp.dest(path.dist + 'scripts'))
             .pipe(reload({stream: true}));
     }
 });
@@ -142,7 +118,6 @@ gulp.task('watch', function () {
             blacklist: ['/wp-admin/**']
         }
     });
-    //console.log(path.source + 'styles/**/*');
     gulp.watch([path.source + 'styles/**/*'], ['styles']);
     gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
     gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
@@ -165,8 +140,8 @@ gulp.task('bower-install', function () {
 
 // ### Copy
 // `gulp copy` - Copy modernizr to dist folder for production
-gulp.task('copy', function() {
-    return gulp.src('bower_components/modernizr/modernizr.js')
+gulp.task('copy', function () {
+    return gulp.src(['bower_components/modernizr/modernizr.js'])
         .pipe(gulp.dest(path.dist + 'scripts'));
 });
 

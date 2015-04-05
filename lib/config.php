@@ -4,23 +4,10 @@ namespace MW\Ripples\Config;
 
 use MW\Ripples;
 
-/**
- * Configuration values
- */
-if ( ! defined( 'GOOGLE_ANALYTICS_ID' ) ) {
-	// Format: UA-XXXXX-Y (Note: Universal Analytics only)
-	define( 'GOOGLE_ANALYTICS_ID', '' );
-}
-
 if ( ! defined( 'WP_ENV' ) ) {
 	// Fallback if WP_ENV isn't defined in your WordPress config
 	// Used in lib/assets.php to check for 'development' or 'production'
 	define( 'WP_ENV', 'production' );
-}
-
-if ( ! defined( 'DIST_DIR' ) ) {
-	// Path to the build directory for front-end assets
-	define( 'DIST_DIR', '/dist/' );
 }
 
 /**
