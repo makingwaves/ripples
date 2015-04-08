@@ -6,13 +6,15 @@ In depth docs can be found [here](https://www.gitbook.com/content/book/pederan/m
 
 ## Requirements
 
-| Prerequisite     | How to check | How to install
-| ---------------- | ------------ | ------------- |
-| PHP >= 5.4.x     | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
-| Node.js 0.12.x   | `node -v`    | [nodejs.org](http://nodejs.org/) |
-| gulp >= 3.8.10   | `gulp -v`    | `npm install -g gulp` |
-| Bower >= 1.3.12  | `bower -v`   | `npm install -g bower` |
-| Compass >= 1.0.1 | `compass -v` | `gem install compass` |
+| Prerequisite          | How to check | How to install
+| ----------------------| ------------ | ------------- |
+| PHP >= 5.4.x          | `php -v`     | [php.net](http://php.net/manual/en/install.php) |
+| Node.js 0.12.x        | `node -v`    | [nodejs.org](http://nodejs.org/) |
+| gulp >= 3.8.10        | `gulp -v`    | `npm install -g gulp` |
+| Bower >= 1.3.12       | `bower -v`   | `npm install -g bower` |
+| Compass >= 1.0.1      | `compass -v` | `gem install compass` |
+| RequireJS >= 2.1.16   | `r.js -v`    | `npm -g requirejs` |
+
 For more installation notes, refer to the [Install gulp and Bower](#install-gulp-and-bower) section in this document.
 
 ## Features
@@ -30,7 +32,7 @@ Clone the git repo - `git clone git@github.com:makingwaves/ripples.git` and then
 
 ## Configuration
 
-Edit `lib/config.php` to enable or disable theme features and to define a Google Analytics ID.
+Edit `lib/config.php` to enable or disable theme features
 
 Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post formats, and sidebars.
 
@@ -46,15 +48,16 @@ From the command line:
 
 1. Install [gulp](http://gulpjs.com) and [Bower](http://bower.io/) globally with `npm install -g gulp bower`
 2. Navigate to the theme directory, then run `npm install`
-3. Run `bower install`
+3. Run `gulp setup`
 
 You now have all the necessary dependencies to run the build process.
 
 ### Available gulp commands
 
 * `gulp` — Compile and optimize the files in your assets directory
+* `gulp setup` — Compile and optimize the files in your assets directory and runs `bower install`
 * `gulp watch` — Compile assets when file changes are made
-* `gulp --production` — Compile assets for production (no source maps).
+* `gulp --production` — Compile assets for production (concatenated and minified js and no source maps).
 
-To use BrowserSync during `gulp watch` you need update `devUrl` at the bottom of `assets/manifest.json` to reflect your local development hostname.
+To use BrowserSync during `gulp watch` you need update `devUrl` at the top of `gulpfile.js` to reflect your local development hostname.
 

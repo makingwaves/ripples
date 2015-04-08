@@ -8,7 +8,8 @@ var $ = require('gulp-load-plugins')(),
     lazypipe = require('lazypipe'),
     shell = require('gulp-shell');
 
-var path = {
+var devUrl = "http://example.dev",
+    path = {
         source: 'assets/',
         dist: 'dist/'
     },
@@ -112,7 +113,7 @@ gulp.task('images', function () {
 
 gulp.task('watch', function () {
     browserSync({
-        proxy: "http://makingpress.mw",
+        proxy: devUrl,
         snippetOptions: {
             whitelist: ['/wp-admin/admin-ajax.php'],
             blacklist: ['/wp-admin/**']
