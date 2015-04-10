@@ -55,5 +55,5 @@ temp/
 bower_components
 node_modules
 npm-debug.log
-lang/.*mo
-lang/.*po
+lang/*.mo
+lang/*.po
