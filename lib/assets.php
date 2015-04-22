@@ -3,9 +3,10 @@
 namespace MW\Ripples\Assets;
 
 function assets() {
-	$vendorFolder = get_template_directory_uri() . '/bower_components/';
-	$assetFolder = get_template_directory_uri() . '/assets/';
-	$distFolder = get_template_directory_uri() . '/dist/';
+	$themeURI = get_template_directory_uri();
+	$vendorFolder = $themeURI . '/bower_components/';
+	$assetFolder = $themeURI . '/assets/';
+	$distFolder = $themeURI . '/dist/';
 
 	wp_enqueue_style( 'ripples_css', $distFolder. 'styles/main.css' , false, null );
 
@@ -22,6 +23,10 @@ function assets() {
 	if ( WP_ENV === 'development' ) {
 		wp_enqueue_script( 'ripples_rjs', $vendorFolder . 'requirejs/require.js', [ ], null, true );
 		wp_enqueue_script( 'ripples_js', $assetFolder . 'scripts/main.js' , [ ], null, true );
+		$dataToBePassed = array(
+			'themeURI'        => $themeURI,
+		);
+		wp_localize_script( 'ripples_js', 'php_vars', $dataToBePassed );
 	} else {
 		wp_enqueue_script( 'ripples_js_min', $distFolder .  'scripts/main.min.js' , [ ], null, true );
 	}

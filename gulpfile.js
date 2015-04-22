@@ -80,7 +80,10 @@ gulp.task('styles', function () {
         path.source + "styles/main.scss",
         path.source + "styles/editor-style.scss"
     ])
-        .pipe(cssTasks())
+        .pipe(cssTasks().on('error', function (err) {
+            console.error(err.message);
+            this.emit('end');
+        }))
         .pipe(gulp.dest('dist/styles'))
         .pipe(reload({stream: true}));
 });
