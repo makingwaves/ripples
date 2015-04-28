@@ -28,3 +28,8 @@ function my_acf_json_load_point( $paths ) {
 	return $paths;
 
 }
+
+//option page : http://www.advancedcustomfields.com/resources/options-page/
+/*if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page();
+}*/

@@ -1,10 +1,9 @@
-// ## Globals
-/*global $:true*/
 var $ = require('gulp-load-plugins')(),
+    gulp = require('gulp'),
     argv = require('yargs').argv,
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
-    gulp = require('gulp'),
+    filter = require('gulp-filter'),
     lazypipe = require('lazypipe'),
     shell = require('gulp-shell');
 
@@ -68,7 +67,7 @@ gulp.task('scripts', ['jshint'], function () {
 // `gulp jshint` - Lints configuration JSON and project JS.
 gulp.task('jshint', function () {
     return gulp.src([
-        'bower.json', 'gulpfile.js', 'assets/scripts/**/*'
+        'bower.json', 'gulpfile.js', path.source + 'scripts/**/*'
     ])
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
@@ -76,15 +75,13 @@ gulp.task('jshint', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src([
-        path.source + "styles/main.scss",
-        path.source + "styles/editor-style.scss"
-    ])
+    return gulp.src(path.source + "styles/*.scss")
         .pipe(cssTasks().on('error', function (err) {
             console.error(err.message);
             this.emit('end');
         }))
         .pipe(gulp.dest('dist/styles'))
+        .pipe(filter('**/*.css')) // Filtering stream to only css files
         .pipe(reload({stream: true}));
 });
 
@@ -92,7 +89,7 @@ gulp.task('styles', function () {
 // `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory
 // structure. See: https://github.com/armed/gulp-flatten
 gulp.task('fonts', function () {
-    return gulp.src(["assets/fonts/**/*"])
+    return gulp.src([path.source + "fonts/**/*"])
         .pipe($.flatten())
         .pipe(gulp.dest(path.dist + 'fonts'));
 });
@@ -102,9 +99,9 @@ gulp.task('fonts', function () {
 // `gulp images` - Run lossless compression on all the images.
 gulp.task('images', function () {
     return gulp.src([
-        "assets/images/**/*",
-        "!assets/images/_debug/",
-        "!assets/images/_debug/**"
+        path.source + "images/**/*",
+        "!" + path.source + "images/_debug/",
+        "!"+ path.source + "images/_debug/**"
     ])
         .pipe($.imagemin({
             progressive: true,
