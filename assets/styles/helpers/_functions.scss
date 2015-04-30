@@ -50,6 +50,10 @@
   @return em(fontSize($key, $platform));
 }
 
+@function fontSizeBaseline($key, $platform: mobile) {
+  @return fontSize($key, $platform) / $base-line-height;
+}
+
 @function fontFamily($key) {
   @if map-has-key($fonts, $key) {
     @return map-fetch($fonts, $key family);

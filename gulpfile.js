@@ -1,3 +1,5 @@
+// ## Globals
+/*global $:true*/
 var $ = require('gulp-load-plugins')(),
     gulp = require('gulp'),
     argv = require('yargs').argv,
