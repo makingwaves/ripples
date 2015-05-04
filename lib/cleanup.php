@@ -162,6 +162,37 @@ function remove_dashboard_widgets() {
 add_action( 'admin_init', __NAMESPACE__ . '\\remove_dashboard_widgets' );
 
 /**
+ * Remove standard wp top level menu items
+ */
+function remove_menus(){
+
+//    remove_menu_page( 'index.php' );                  //Dashboard
+//	remove_menu_page( 'edit.php' );                   //Posts
+//    remove_menu_page( 'upload.php' );                 //Media
+//    remove_menu_page( 'edit.php?post_type=page' );    //Pages
+	remove_menu_page( 'edit-comments.php' );          //Comments
+//    remove_menu_page( 'themes.php' );                 //Appearance
+//    remove_menu_page( 'plugins.php' );                //Plugins
+//    remove_menu_page( 'users.php' );                  //Users
+//    remove_menu_page( 'tools.php' );                  //Tools
+//    remove_menu_page( 'options-general.php' );        //Settings
+
+}
+add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menus' );
+
+/**
+ * Remove default image sizes
+ */
+function remove_default_image_sizes( $sizes) {
+	unset( $sizes['thumbnail']);
+	unset( $sizes['medium']);
+	unset( $sizes['large']);
+
+	return $sizes;
+}
+//add_filter('intermediate_image_sizes_advanced', __NAMESPACE__ . '\\remove_default_image_sizes');
+
+/**
  * Remove unnecessary self-closing tags
  */
 function remove_self_closing_tags( $input ) {

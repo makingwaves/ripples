@@ -19,6 +19,3 @@ if ( !empty( $value ) && function_exists( 'get_field' ) && $post_id ) {
 	the_content();
 	wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'ripples'), 'after' => '</p></nav>']);
 }
-
-?>
-
