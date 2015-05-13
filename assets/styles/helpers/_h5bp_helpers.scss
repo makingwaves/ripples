@@ -5,62 +5,66 @@
 // Image replacement
 // ==========================================================================
 %ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-    &:before{
-        content: "";
-        display: block;
-        width: 0;
-        height: 150%;
-    }
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px;
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+  }
 }
 
 // Hide from both screenreaders and browsers: h5bp.com/u
 // ==========================================================================
 %is-hidden {
-    display: none !important;
-    visibility: hidden;
+  display: none !important;
+  visibility: hidden;
 }
 
-.is-hidden{
-    @extend %is-hidden;
+.is-hidden {
+  @extend %is-hidden;
 }
 
 // Hide only visually, but have it available for screenreaders: h5bp.com/v
 // ==========================================================================
 %is-vishidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    //
-    // Extends the .visuallyhidden class to allow the element to be focusable
-    // when navigated to via the keyboard: h5bp.com/p
-    //
-    &.focusable:active,
-    &.focusable:focus{
-        clip: auto;
-        height: auto;
-        margin: 0;
-        overflow: visible;
-        position: static;
-        width: auto;
-    }
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  //
+  // Extends the .visuallyhidden class to allow the element to be focusable
+  // when navigated to via the keyboard: h5bp.com/p
+  //
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
 }
 
-.is-vishidden{
-    @extend %is-vishidden;
+.is-vishidden {
+  @extend %is-vishidden;
+}
+
+.clearfix {
+  @extend %clearfix;
 }
 
 // Hide visually and from screenreaders, but maintain layout
 // ==========================================================================
 %invisible {
-    visibility: hidden;
+  visibility: hidden;
 }

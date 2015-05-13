@@ -1,0 +1,15 @@
+.navigation {
+  ul {
+    @extend %clearfix;
+    margin-left: em(-20px);
+    list-style: none;
+    li {
+      float: left;
+      margin-left: em(20px);
+      &.active {
+        font-weight: bold;
+      }
+    }
+    a {}
+  }
+}

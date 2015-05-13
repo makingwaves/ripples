@@ -2,7 +2,7 @@
 @for $i from 1 through (length($fonts) - 1) {
 
   $size: fontSize(h#{$i});
-  h#{$i}, .#{nth($greek-alphabet, $i)} {
+  h#{$i}, .h#{$i}, .#{nth($greek-alphabet, $i)} {
     font-family: fontFamily(h#{$i});
     font-weight: fontWeight(h#{$i});
     font-style: fontStyle(h#{$i});
@@ -13,9 +13,9 @@
   @include breakpoint($medium) {
 
     $size: fontSize(h#{$i}, desktop);
-    h#{$i}, .#{nth($greek-alphabet, $i)} {
+    h#{$i}, .h#{$i}, .#{nth($greek-alphabet, $i)} {
       @include adjust-font-size-to($to-size: $size);
-      @include trailer(3, $size);
+      @include trailer(4, $size);
     }
   }
 }

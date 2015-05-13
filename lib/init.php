@@ -20,8 +20,7 @@ function setup() {
 	// Register wp_nav_menu() menus
 	// http://codex.wordpress.org/Function_Reference/register_nav_menus
 	register_nav_menus( [
-		'primary_navigation' => __( 'Primary Navigation', 'ripples' ),
-		'footer_menu'        => __( 'Footer Menu', 'ripples' ),
+		'main_menu'     => __( 'Main menu', 'ripples' )
 	] );
 
 	// Add post thumbnails
@@ -68,4 +67,4 @@ function widgets_init() {
 	] );
 }
 
-add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
+//add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );

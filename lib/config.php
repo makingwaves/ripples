@@ -15,6 +15,7 @@ function is_localhost() {
 if ( ! defined( 'WP_ENV' ) ) {
 	if(is_localhost()) {
 		define( 'WP_ENV', 'development' );
+		define( 'WP_DEBUG', true );
 	} else {
 		define( 'WP_ENV', 'production' );
 	}
