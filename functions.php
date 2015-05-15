@@ -58,3 +58,24 @@ function inc( $type, $component, $value = null, $componentType = '', $path = 'co
 	}
 }
 
+/**
+ * Load atomic components from the components folder. Does not echo the component, but returns it
+ *
+ * @param string $type Type of component
+ * @param string $component File name of the component
+ * @param string|array[object|number $value Value param to pass to the compenent
+ * @param string $componentType Alternativ template
+ * @param string $path Path to the components
+ *
+ * @return string The component
+ */
+
+function req( $type, $component, $value = null, $componentType = '', $path = 'components' ) {
+	ob_start();
+	inc($type, $component, $value, $componentType, $path);
+	$output = ob_get_contents();
+	ob_end_clean();
+
+	return $output;
+}
+

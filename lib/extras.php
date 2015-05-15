@@ -39,3 +39,44 @@ function my_rewrite_flush() {
 }
 
 add_action( 'after_switch_theme', __NAMESPACE__ . '\\my_rewrite_flush' );
+
+
+/**
+ * Customize the wysiwyg editor
+ * Recommended additional plugin : https://wordpress.org/plugins/tinymce-advanced/
+ */
+//add_filter( 'tiny_mce_before_init', 'custom_mce_before_init' );
+function custom_mce_before_init( $settings ) {
+	$style_formats = array(
+		array(
+			'title'  => __( 'Paragraph', 'ripples' ),
+			'format' => 'p',
+		),
+		array(
+			'title'  => __( 'Heading 2', 'ripples' ),
+			'format' => 'h2',
+		),
+		array(
+			'title'  => __( 'Heading 3', 'ripples' ),
+			'format' => 'h3',
+		),
+		array(
+			'title'  => __( 'Heading 4', 'ripples' ),
+			'format' => 'h4',
+		),
+		array(
+			'title' => __( 'Wysiwyg.Formats', 'ripples' ),
+			'items' => array(
+				/* Inline style that only applies to links */
+				array(
+					'title'    => __( 'Wysiwyg.Some class', 'ripples' ), /* Label in "Formats" menu */
+					'selector' => 'p', /* this style can ONLY be applied to existing <a> elements in the selection! */
+					'classes'  => 'some-class' /* class to add */
+				),
+			),
+		),
+	);
+
+	$settings['style_formats'] = json_encode( $style_formats );
+	return $settings;
+}
