@@ -34,7 +34,7 @@ function setup() {
 	add_theme_support( 'html5', [ 'caption', 'comment-form', 'comment-list' ] );
 
 	// Tell the TinyMCE editor to use a custom stylesheet
-	add_editor_style( get_template_directory_uri() . 'dist/styles/editor-style.css'  );
+	add_editor_style( get_template_directory_uri() . '/dist/styles/editor-style.css'  );
 }
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
