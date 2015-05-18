@@ -1,0 +1,29 @@
+.outer-container {
+  //  @extend %show-horizontal-grid;
+  //  @extend %show-baseline-grid;
+  @include container;
+  @extend %clearfix;
+  width: 94%;
+  @include breakpoint($medium) {
+    $susy: (
+            columns: $numberOfColumnsWide,
+            gutters: 1/3,
+            container-position: 30px 0
+    );
+    @include container(70.5em $susy); //1128 grid
+  }
+}
+
+.inner-container {
+  float: left;
+  width: 100%;
+}
+
+.row {
+  position: relative;
+  @extend %clearfix;
+  float: left;
+  width: 100%;
+}
+
+.g-xup {@extend %g-xup;}
