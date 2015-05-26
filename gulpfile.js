@@ -29,7 +29,13 @@ var devUrl = "http://anorak.dev",
 var cssTasks = function () {
     return lazypipe()
         .pipe(function () {
-            return $.if(!enabled.failStyleTask, $.plumber({errorHandler: notify.onError("Error: <%= error.message %>")}));
+            return $.if(!enabled.failStyleTask, $.plumber({
+                errorHandler: notify.onError({
+                    message: "Error: <%= error.message %>",
+                    title: "Error compiling SCSS",
+                    onLast: true
+                })
+            }));
         })
         .pipe(function () {
             return $.if(enabled.maps, $.sourcemaps.init());
@@ -65,7 +71,11 @@ gulp.task('scripts', ['jshint'], function () {
         //dev
         return gulp.src(path.source + 'scripts/main.js')
             .pipe(filter('**/*.js')) // Filtering stream to only js files
-            .pipe(notify("JS compiled successfully"))
+            .pipe(notify({
+                title: "JS compiled successfully",
+                message: "YIHA!!",
+                onLast: true
+            }))
             .pipe(reload({stream: true}));
     }
 });
@@ -99,7 +109,11 @@ gulp.task('styles', function () {
         }))
         .pipe(gulp.dest('dist/styles'))
         .pipe(filter('**/*.css')) // Filtering stream to only css files
-        .pipe(notify("SCSS compiled successfully"))
+        .pipe(notify({
+            title: "SCSS compiled successfully",
+            message: "YIHA!!",
+            onLast: true
+        }))
         .pipe(reload({stream: true}));
 });
 
