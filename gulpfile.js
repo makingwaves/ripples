@@ -7,9 +7,12 @@ var $ = require('gulp-load-plugins')(),
     reload = browserSync.reload,
     filter = require('gulp-filter'),
     lazypipe = require('lazypipe'),
-    shell = require('gulp-shell');
+    shell = require('gulp-shell'),
+    notify = require("gulp-notify"),
+    jshint = require("gulp-jshint");
 
-var devUrl = "http://example.dev",
+
+var devUrl = "http://anorak.dev",
     path = {
         source: 'assets/',
         dist: 'dist/'
@@ -26,7 +29,7 @@ var devUrl = "http://example.dev",
 var cssTasks = function () {
     return lazypipe()
         .pipe(function () {
-            return $.if(!enabled.failStyleTask, $.plumber());
+            return $.if(!enabled.failStyleTask, $.plumber({errorHandler: notify.onError("Error: <%= error.message %>")}));
         })
         .pipe(function () {
             return $.if(enabled.maps, $.sourcemaps.init());
@@ -61,6 +64,8 @@ gulp.task('scripts', ['jshint'], function () {
     } else {
         //dev
         return gulp.src(path.source + 'scripts/main.js')
+            .pipe(filter('**/*.js')) // Filtering stream to only js files
+            .pipe(notify("JS compiled successfully"))
             .pipe(reload({stream: true}));
     }
 });
@@ -68,12 +73,22 @@ gulp.task('scripts', ['jshint'], function () {
 // ### JSHint
 // `gulp jshint` - Lints configuration JSON and project JS.
 gulp.task('jshint', function () {
-    return gulp.src([
-        'bower.json', 'gulpfile.js', path.source + 'scripts/**/*'
-    ])
-        .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish'))
-        .pipe($.jshint.reporter('fail'));
+    gulp.src(path.source + 'scripts/**/*.js')
+        .pipe(jshint())
+        // Use gulp-notify as jshint reporter
+        .pipe(notify(function (file) {
+            if (file.jshint.success) {
+                // Don't show something if success
+                return false;
+            }
+
+            var errors = file.jshint.results.map(function (data) {
+                if (data.error) {
+                    return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                }
+            }).join("\n");
+            return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+        }));
 });
 
 gulp.task('styles', function () {
@@ -84,6 +99,7 @@ gulp.task('styles', function () {
         }))
         .pipe(gulp.dest('dist/styles'))
         .pipe(filter('**/*.css')) // Filtering stream to only css files
+        .pipe(notify("SCSS compiled successfully"))
         .pipe(reload({stream: true}));
 });
 
@@ -103,7 +119,7 @@ gulp.task('images', function () {
     return gulp.src([
         path.source + "images/**/*",
         "!" + path.source + "images/_debug/",
-        "!"+ path.source + "images/_debug/**"
+        "!" + path.source + "images/_debug/**"
     ])
         .pipe($.imagemin({
             progressive: true,

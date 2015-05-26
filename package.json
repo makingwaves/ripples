@@ -44,12 +44,12 @@
     "gulp-imagemin": "^2.0.0",
     "gulp-jshint": "^1.8.4",
     "gulp-load-plugins": "^0.8.0",
+    "gulp-notify": "^2.2.0",
     "gulp-pleeease": "^1.1.0",
     "gulp-plumber": "^1.0.0",
     "gulp-shell": "^0.4.0",
     "gulp-sourcemaps": "^1.1.1",
     "imagemin-pngcrush": "^4.0.0",
-    "jshint-stylish": "^1.0.0",
     "lazypipe": "^0.2.2",
     "yargs": "^3.2.1"
   }

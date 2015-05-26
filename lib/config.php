@@ -10,12 +10,12 @@ function is_localhost() {
 		return true;
 }
 
-// Fallback if WP_ENV isn't defined in your WordPress config
+// Fallback if WP_ENV isn't defined in your WordPress config & debug mode when local development
 // Used in lib/assets.php to check for 'development' or 'production'
 if ( ! defined( 'WP_ENV' ) ) {
 	if(is_localhost()) {
 		define( 'WP_ENV', 'development' );
-		define( 'WP_DEBUG', true );
+		if ( ! defined( 'WP_DEBUG' ) ) { define( 'WP_DEBUG', true ); }
 	} else {
 		define( 'WP_ENV', 'production' );
 	}

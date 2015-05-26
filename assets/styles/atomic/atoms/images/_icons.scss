@@ -36,13 +36,15 @@ a {
   }
   [class^="icon-"], [class*=" icon-"] {
     vertical-align: middle;
-    color: color(icon-hover);
+    color: color(icon);
   }
-  .txt {
-    display: inline-block;
-    vertical-align: middle;
+  &:hover {
+    [class^="icon-"], [class*=" icon-"] {
+      color: color(icon-hover);
+    }
   }
 }
+
 
 .icon {color: color(icon);}
 
