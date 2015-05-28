@@ -12,7 +12,7 @@ var $ = require('gulp-load-plugins')(),
     jshint = require("gulp-jshint");
 
 
-var devUrl = "http://anorak.dev",
+var devUrl = "http://example.dev",
     path = {
         source: 'assets/',
         dist: 'dist/'
