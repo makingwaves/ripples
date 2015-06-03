@@ -31,7 +31,7 @@ function my_acf_json_load_point( $paths ) {
 
 //Hide the ACF menu for non admins so that the fields will be tampered with on server
 //http://www.advancedcustomfields.com/resources/how-to-hide-acf-menu-from-clients/
-add_filter('acf/settings/show_admin', 'my_acf_show_admin');
+add_filter('acf/settings/show_admin', __NAMESPACE__ . '\\my_acf_show_admin');
 
 //add_filter('acf/settings/show_admin', '__return_false'); //hide for all
 
