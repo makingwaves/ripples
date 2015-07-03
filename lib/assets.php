@@ -10,9 +10,7 @@ function assets() {
 
 	wp_enqueue_style( 'ripples_css', $distFolder. 'styles/main.css' , false, null );
 
-	if ( ! is_admin() ) {
-		wp_deregister_script( 'jquery' );
-	}
+	wp_deregister_script( 'jquery' );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -29,5 +27,12 @@ function assets() {
 
 }
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\frontend_assets', 100 );
 
+function admin_assets() {
+	$themeURI = get_template_directory_uri();
+	$distFolder = $themeURI . '/dist/';
+	wp_enqueue_style( 'admin_css', $distFolder. 'styles/admin.css' );
+}
+
+//add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_assets' );
