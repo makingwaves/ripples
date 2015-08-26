@@ -1,4 +1,19 @@
 <?php
+
+//http://www.stumiller.me/sending-output-to-the-wordpress-debug-log/
+//tail -f debug.log
+if (!function_exists('write_log')) {
+	function write_log ( $log )  {
+		if ( true === WP_DEBUG ) {
+			if ( is_array( $log ) || is_object( $log ) ) {
+				error_log( print_r( $log, true ) );
+			} else {
+				error_log( $log );
+			}
+		}
+	}
+}
+
 /**
  * Ripples includes
  *
