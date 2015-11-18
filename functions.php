@@ -1,7 +1,7 @@
 <?php
 
 //http://www.stumiller.me/sending-output-to-the-wordpress-debug-log/
-//tail -f debug.log
+//run command from /wp-content/ to listen to debug info : tail -f debug.log
 if (!function_exists('write_log')) {
 	function write_log ( $log )  {
 		if ( true === WP_DEBUG ) {
