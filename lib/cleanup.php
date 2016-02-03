@@ -9,9 +9,6 @@ namespace MW\Ripples\CleanUp;
  * Remove inline CSS used by Recent Comments widget
  * Remove inline CSS used by posts with galleries
  * Remove self-closing tag and change ''s to "'s on rel_canonical()
- *
- * You can enable/disable this feature in functions.php (or lib/config.php if you're using Sage):
- * add_theme_support('soil-clean-up');
  */
 function head_cleanup() {
 	// Originally from http://wpengineer.com/1438/wordpress-header/
@@ -79,7 +76,6 @@ function language_attributes() {
 	}
 
 	$output = implode( ' ', $attributes );
-	$output = apply_filters( 'soil/language_attributes', $output );
 
 	return $output;
 }
