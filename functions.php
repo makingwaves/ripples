@@ -33,6 +33,7 @@ $ripples_includes = [
 	'lib/nav.php',                      // Custom nav modifications
 	'lib/extras.php',                   // Custom functions
 	'lib/acf.php',                      // Advanced custom fields settings
+	'lib/users.php',                    // User role hooks
 ];
 
 foreach ( $ripples_includes as $file ) {
