@@ -10,13 +10,25 @@ function is_localhost() {
 		return true;
 }
 
+//wpengine spesific
+function is_staging() {
+	$url = $_SERVER['SERVER_NAME'];
+	if (strpos($url, '.staging.') !== false) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 // Fallback if WP_ENV isn't defined in your WordPress config & debug mode when local development
 // Used in lib/assets.php to check for 'development' or 'production'
-if ( ! defined( 'WP_ENV' ) ) {
-	if(is_localhost()) {
-		define( 'WP_ENV', 'development' );
+if (!defined('WP_ENV')) {
+	if (is_localhost()) {
+		define('WP_ENV', 'development');
+	} else if (is_staging()) {
+		define('WP_ENV', 'staging');
 	} else {
-		define( 'WP_ENV', 'production' );
+		define('WP_ENV', 'production');
 	}
 }
 
