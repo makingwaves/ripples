@@ -8,42 +8,28 @@
 
 namespace MW\Ripples\Users;
 
-class Ripples_User_Caps {
+class Ripples_Editor_Role {
+
+	protected static $ALLOWED_CAPS = ["edit_theme_options", "create_users",
+						"list_users",
+						"edit_users",
+						"edit_user",
+						"delete_users",
+						"delete_user",
+						"remove_users",
+						"remove_user"];
 
 	// Add our filters
 	function __construct(){
-		add_filter( 'editable_roles', array($this, 'editable_roles'));
-		add_filter( 'map_meta_cap', array($this, 'map_meta_cap'),10,4);
-		add_action( 'admin_menu', array($this, 'adjust_the_wp_menu'), 999 );
-
-		$this->adjustMenu();
-	}
-
-	protected function adjustMenu() {
-		//adjust the menu for the editor role
-
-		$roleObject = get_role( 'editor' );
-		if ( ! $roleObject->has_cap( 'edit_theme_options' ) ) {
-			$roleObject->add_cap( 'edit_theme_options' );
-
-			$roleObject->add_cap( 'create_users' );
-			$roleObject->add_cap( 'list_users' );
-			$roleObject->add_cap( 'edit_users' );
-			$roleObject->add_cap( 'edit_user' );
-			$roleObject->add_cap( 'delete_users' );
-			$roleObject->add_cap( 'delete_user' );
-			$roleObject->add_cap( 'remove_users' );
-			$roleObject->add_cap( 'remove_user' );
-		}
+		add_filter( 'editable_roles', array($this, 'editable_roles') );
+		add_filter( 'map_meta_cap', array($this, 'map_meta_cap'), 10, 4 );
+		add_filter( 'user_has_cap', array( $this, 'set_user_caps_from_php' ), 10, 2 );
 	}
 
 	public function adjust_the_wp_menu() {
-		$currentUser = wp_get_current_user();
-		if ( ! empty( $currentUser ) && $currentUser->roles[0] === 'editor' ) {
-			remove_menu_page( 'tools.php' );
-			remove_menu_page( 'themes.php' );
-			add_menu_page( 'Menu', 'Menu', 'edit_theme_options', 'nav-menus.php', '', 'dashicons-menu', 26 );
-		}
+		remove_menu_page( 'tools.php' );
+		remove_menu_page( 'themes.php' );
+		add_menu_page( 'Menu', 'Menu', 'edit_theme_options', 'nav-menus.php', '', 'dashicons-menu', 26 );
 	}
 
 	// Remove 'Administrator' from the list of roles if the current user is not an admin
@@ -52,6 +38,15 @@ class Ripples_User_Caps {
 			unset( $roles['administrator']);
 		}
 		return $roles;
+	}
+
+	function set_user_caps_from_php($caps, $cap) {
+		if ( ! empty( $cap ) ) {
+			if(in_array($cap[0], self::$ALLOWED_CAPS)) {
+				$caps[ $cap[0] ] = true;
+			}
+		}
+		return $caps;
 	}
 
 	// If someone is trying to edit or delete and admin and that user isn't an admin, don't allow it
@@ -90,7 +85,6 @@ class Ripples_User_Caps {
 
 }
 
-$currentUser = wp_get_current_user();
-if ( is_admin() && ! empty( $currentUser ) && $currentUser->roles[0] === 'editor' ) {
-	new Ripples_User_Caps();
+if ( is_admin() && current_user_can('editor')) {
+	new Ripples_Editor_Role();
 }

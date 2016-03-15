@@ -55,7 +55,7 @@
   }
 }
 
-.is-vishidden {
+.is-vishidden, .sr-only {
   @extend %is-vishidden;
 }
 
