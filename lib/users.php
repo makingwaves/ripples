@@ -10,7 +10,9 @@ namespace MW\Ripples\Users;
 
 class Ripples_Editor_Role {
 
-	protected static $ALLOWED_CAPS = ["edit_theme_options", "create_users",
+	protected static $ALLOWED_CAPS = [
+						"edit_theme_options", //mwfix: only for menu, disable other caps
+						"create_users",
 						"list_users",
 						"edit_users",
 						"edit_user",
@@ -24,9 +26,10 @@ class Ripples_Editor_Role {
 		add_filter( 'editable_roles', array($this, 'editable_roles') );
 		add_filter( 'map_meta_cap', array($this, 'map_meta_cap'), 10, 4 );
 		add_filter( 'user_has_cap', array( $this, 'set_user_caps_from_php' ), 10, 2 );
+		add_filter( 'admin_init', array( $this, 'access_wp_menu' ) );
 	}
 
-	public function adjust_the_wp_menu() {
+	public function access_wp_menu() {
 		remove_menu_page( 'tools.php' );
 		remove_menu_page( 'themes.php' );
 		add_menu_page( 'Menu', 'Menu', 'edit_theme_options', 'nav-menus.php', '', 'dashicons-menu', 26 );
