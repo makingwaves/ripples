@@ -11,7 +11,7 @@ namespace MW\Ripples\Users;
 class Ripples_Editor_Role {
 
 	protected static $ALLOWED_CAPS = [
-						"edit_theme_options", //mwfix: only for menu, disable other caps
+						"edit_theme_options",
 						"create_users",
 						"list_users",
 						"edit_users",
