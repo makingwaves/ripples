@@ -2,15 +2,15 @@
   "name": "ripples",
   "homepage": "http://www.makingwaves.no/",
   "authors": [
-    "Peder Nielsen <peder.nielsen@makingwaves.no>",
-    "Martin Dahl <martin.dahl@makingwaves.no>"
+    "Peder Nielsen <peder.nielsen@makingwaves.com>",
+    "Martin Dahl <martin.dahl@makingwaves.com>"
   ],
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "modernizr": "~2.8.2",
-    "jquery": "~1.11.2",
-    "requirejs": "~2.1.5"
+    "modernizr": "~2.8.3",
+    "requirejs": "~2.1.5",
+    "jquery": "^2.2.3"
   },
   "overrides": {
     "modernizr": {
@@ -18,7 +18,7 @@
     }
   },
   "devDependencies": {
-    "susy": "~2.2.2",
+    "susy": "^2.2.12",
     "breakpoint-sass": "~2.5.0"
   }
 }
