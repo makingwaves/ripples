@@ -13,11 +13,12 @@ namespace MW\Ripples\Schema;
 
 function getJsonLD($file, $value = null) {
 	return json_decode( req( 'schema/types', $file, $value, $componentType = '', $path = 'includes' ) );
-
 }
 $jsonLD = [];
 
 if ( is_home() ) {
+	array_push( $jsonLD, getJsonLD('home') );
+} else {
 	array_push( $jsonLD, getJsonLD('product', 'Makrell') );
 }
 ?>
