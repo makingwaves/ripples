@@ -6,7 +6,7 @@ use MW\Ripples\Wrapper;
 ?>
 
 <?php inc('atom', 'head'); ?>
-  <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+  <body <?php body_class(); ?>>
     <!--[if lt IE 9]>
 	<div class="alert alert-warning">
 		<?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'ripples'); ?>

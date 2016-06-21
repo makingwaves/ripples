@@ -16,11 +16,20 @@ function getJsonLD($file, $value = null) {
 }
 $jsonLD = [];
 
+
+
+/////////////////////////
+
+array_push( $jsonLD, getJsonLD('header') );
+
 if ( is_home() ) {
 	array_push( $jsonLD, getJsonLD('home') );
 } else {
 	array_push( $jsonLD, getJsonLD('product', 'Makrell') );
 }
+
+/////////////////////////
+
 ?>
 
 <? if(!empty( $jsonLD )) : ?>
