@@ -25,7 +25,7 @@ use MW\Ripples\Wrapper;
     <?php
         inc('organism', 'footer');
         wp_footer();
-        include dirname( __FILE__ ) . '/includes/schema/index.php';
+        include dirname( __FILE__ ) . '/includes/json-ld/index.php';
     ?>
   </body>
 </html>
