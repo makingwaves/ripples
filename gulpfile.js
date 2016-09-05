@@ -8,8 +8,9 @@ var $ = require('gulp-load-plugins')(),
     filter = require('gulp-filter'),
     lazypipe = require('lazypipe'),
     shell = require('gulp-shell'),
-    notify = require("gulp-notify"),
-    jshint = require("gulp-jshint");
+    notify = require('gulp-notify'),
+    jshint = require('gulp-jshint'),
+    autoprefixer = require('gulp-autoprefixer');
 
 
 var devUrl = "http://example.dev",
@@ -47,13 +48,11 @@ var cssTasks = function () {
                 sass: 'assets/styles'
             });
         })
-        .pipe($.pleeease, {
-            autoprefixer: {
-                browsers: [
-                    'last 2 versions', 'ie 9', 'android 2.3', 'android 4',
-                    'opera 12'
-                ]
-            }
+        .pipe(function() {
+            return autoprefixer({
+                browsers: ['last 2 versions', 'ie 9', 'android 2.3', 'android 4', 'opera 12'],
+                cascade: false
+            })
         })
         .pipe(function () {
             return $.if(enabled.maps, $.sourcemaps.write('.'));
