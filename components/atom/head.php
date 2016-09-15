@@ -8,8 +8,7 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/dist/images/favicon.png">
+	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/dist/images/favicon.ico" type="image/x-icon" />
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/dist/images/favicon.png" />
 	<?php wp_head(); ?>
-
 </head>
